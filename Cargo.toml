@@ -1,0 +1,23 @@
+[package]
+name = "wasmtime-component-serde"
+authors = ["Lann Martin <lann.martin@fermyon.com>"]
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = "1.0.188"
+serde_json = { workspace = true, optional = true }
+wasmtime = { workspace = true }
+wit-parser = "0.11.0"
+
+[dev-dependencies]
+serde_json = { workspace = true }
+wasmtime = { workspace = true, features = ["cranelift", "wat"] }
+
+[features]
+default = ["json"]
+json = ["dep:serde_json"]
+
+[workspace.dependencies]
+serde_json = "1.0.106"
+wasmtime = { git = "https://github.com/bytecodealliance/wasmtime", branch = "release-13.0.0", default-features = false, features = ["component-model"] }
